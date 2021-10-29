@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/default}">
+<header th:fragment="headerFragment">
+	<nav class="header_nav">
+		<img class="header_logo" src="img/logo.png">
+		<a class="header_name" >ME:ET</a>
+	</nav>
+	<div class="header_nav">
+		<!-- Main 페이지는 호출 주소 없이 그냥 / 이므로 a href=""비어놓은거 -->
+		<div class="header_list">
+			<a href="/main"><img style="padding-top: 3px;" src="/img/home.png"></a>
+		</div>
+		<div class="header_list">
+			<label for="menu"><img class="button" style="padding-top: 3px;" src="/img/user.png"></label> 
+			<input class="hidden" type="checkbox" id="menu">
+			<div class="drop_menu">
+				<div class="drop_list">
+					<a class="list_href" href="userInfo">회원정보</a>
+				</div>
+				<!-- 세션으로 각각의 기능 처리 -->
+				<div th:if="${session.id} == null">
+					<div class="drop_list">
+						<a class="list_href" href="signinForm">로그인</a>
+					</div>
+				</div>
+				<div th:if="${session.id} !=null">
+					<div class="drop_list">
+						<a class="list_href" href="logout">로그아웃</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>
+</html>
